@@ -1,0 +1,12 @@
+<odoo>
+	<data>
+    <record model="mail.template" id="mail_template_rdv">
+        <field name="name">RDV: Send by Email</field>
+        <field name="model_id" ref="gestion_alternant.gestion_alternant_rdv"/>
+        <field name="subject">Delivery Order </field>
+        <field name="body_html" type="html">
+        <p>blabla</p>
+        </field>
+    </record>
+    </data>
+</odoo>

@@ -1,0 +1,280 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="gestion_alternants_classe_list">
+      <field name="name">GestionAlternants Classe list</field>
+      <field name="model">gestion_alternants.classe</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="description"/>
+          <field name="alternant_ids"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="gestion_alternants_alternant_list">
+      <field name="name">GestionAlternants alternant list</field>
+      <field name="model">gestion_alternants.alternant</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="firstname"/>
+          <field name="email"/>
+          <field name="classe_id"/>
+          <field name="entreprise_id"/>  
+          <field name="tuteuruniv_id"/>  
+          <field name="tuteurent_id"/>  
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="gestion_alternants_entreprise_list">
+      <field name="name">GestionAlternants entreprise list</field>
+      <field name="model">gestion_alternants.entreprise</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="adresse"/>
+          <field name="alternant_ids"/>
+          <field name="tuteurent_ids"/>
+          <field name="description"/>      
+        </tree>
+      </field>
+    </record>
+    
+    <record model="ir.ui.view" id="gestion_alternants_classe_form">
+      <field name="name">GestionAlternants Classe form</field>
+      <field name="model">gestion_alternants.classe</field>
+      <field name="arch" type="xml">
+        <form>
+        	<group>
+	          <field name="name"/>
+	          <field name="description"/>
+	          <field name="alternant_ids"/>
+	        </group>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="gestion_alternants_alternant_form">
+      <field name="name">GestionAlternants alternant form</field>
+      <field name="model">gestion_alternants.alternant</field>
+      <field name="arch" type="xml">
+        <form>
+         <group>
+          <field name="name"/>
+          <field name="firstname"/>
+          <field name="email"/>
+          <field name="classe_id"/>
+          <field name="entreprise_id"/>
+          <field name="tuteuruniv_id"/>  
+          <field name="tuteurent_id"/>  
+         </group>  
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="gestion_alternants_entreprise_form">
+      <field name="name">GestionAlternants entreprise form</field>
+      <field name="model">gestion_alternants.entreprise</field>
+      <field name="arch" type="xml">
+        <form>
+         <group>
+          <field name="name"/>
+          <field name="adresse"/>
+          <field name="alternant_ids"/>
+	      <field name="tuteurent_ids"/>
+	      <field name="description"/>
+         </group>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="gestion_alternants_tuteurent_list">
+      <field name="name">GestionAlternants tuteur entreprise list</field>
+      <field name="model">gestion_alternants.tuteurent</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="firstname"/>
+          <field name="alternant_ids"/>
+          <field name="entreprise_id"/>
+          <field name="description"/>      
+        </tree>
+      </field>
+    </record>
+    
+    <record model="ir.ui.view" id="gestion_alternants_tuteurent_form">
+      <field name="name">GestionAlternants tuteur entreprise form</field>
+      <field name="model">gestion_alternants.tuteurent</field>
+      <field name="arch" type="xml">
+        <form>
+         <group>
+          <field name="name"/>
+          <field name="firstname"/>
+          <field name="alternant_ids"/>
+          <field name="entreprise_id"/>
+          <field name="description"/>
+         </group>    
+        </form>
+      </field>
+    </record>
+    
+    <record model="ir.ui.view" id="gestion_alternants_tuteuruniv_list">
+      <field name="name">GestionAlternants tuteur universitaire list</field>
+      <field name="model">gestion_alternants.tuteuruniv</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="firstname"/>
+          <field name="alternant_ids"/>
+          <field name="description"/>      
+        </tree>
+      </field>
+    </record>
+    <record model="ir.ui.view" id="gestion_alternants_tuteuruniv_form">
+      <field name="name">GestionAlternants tuteur universitaire form</field>
+      <field name="model">gestion_alternants.tuteuruniv</field>
+      <field name="arch" type="xml">
+        <form>
+         <group>
+          <field name="name"/>
+          <field name="firstname"/>
+          <field name="alternant_ids"/>
+          <field name="description"/>
+         </group>    
+        </form>
+      </field>
+    </record>
+
+        <!-- Kanban View  -->
+        <record model="ir.ui.view" id="gestion_alternants_alternant_kanban">
+            <field name="name">GestionAlternants alternant kanban</field>
+            <field name="model">gestion_alternants.alternant</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="name"/>
+		            <field name="firstname"/>
+		            <field name="email"/>
+		            <field name="classe_id"/>
+		            <field name="entreprise_id"/>
+		            <field name="tuteuruniv_id"/>  
+		            <field name="tuteurent_id"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_card oe_kanban_global_click">
+                                <div class="o_kanban_record_top mb16">
+                                    <div class="o_kanban_record_headings mt4">
+                                        <strong class="o_kanban_record_title"><span><field name="classe_id"/></span></strong>
+                                    </div>
+                                    <strong><field name="entreprise_id"/></strong>
+                                </div>
+                                <div class="o_kanban_record_bottom">
+                                    <div class="oe_kanban_bottom_left">
+                                        <span><field name="firstname"/> <field name="name"/></span>
+                                    </div>
+                                    <div class="oe_kanban_bottom_right">
+                                    	<ul><li><field name="tuteurent_id"/></li>
+                                        <li><field name="tuteuruniv_id" /></li></ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        
+
+   <record model="ir.ui.view" id="gestion_alternants_rdv_list">
+      <field name="name">GestionAlternants rdv list</field>
+      <field name="model">gestion_alternants.rdv</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="date"/>
+          <field name="type"/>
+          <field name="etat"/>
+          <field name="alternant_id"/>
+          <field name="description"/>      
+        </tree>
+      </field>
+    </record>
+    
+   <record model="ir.ui.view" id="gestion_alternants_rdv_form">
+      <field name="name">GestionAlternants rdv list</field>
+      <field name="model">gestion_alternants.rdv</field>
+      <field name="arch" type="xml">
+        <form>
+        <sheet>
+        	<div class="oe_button_box" name="button_box">
+        		<button string="Email" class="oe_stat_button" icon="fa-envelope" name="rdv_send_mail" type="object"></button>
+        	</div>
+        <group>
+          <field name="date"/>
+          <field name="type"/>
+          <field name="etat"/>
+        </group>
+        <group>
+          <field name="description"/>
+          <field name="alternant_id"/>
+          <field name="entreprise_ref"/>
+          <field name="tuteurent_ref"/>
+          <field name="tuteuruniv_ref"/>
+        </group>
+        </sheet>        
+        </form>
+      </field>
+    </record>
+    
+        <record model="ir.ui.view" id="gestion_alternants_rdv_calendar">
+            <field name="name">gestion_alternants rdv calendar</field>
+            <field name="model">gestion_alternants.rdv</field>
+            <field eval="2" name="priority"/>
+            <field name="arch" type="xml">
+                <calendar date_start="date" string="Rencontre" mode="month" color='alternant_id'>
+                    <field name="type" />
+                    <field name="etat"/>
+          			<field name="alternant_id"/>
+                </calendar>
+            </field>
+        </record>
+        
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="gestionalternant_classe_action_window">
+      <field name="name">GestionAlternants window</field>
+      <field name="res_model">gestion_alternants.classe</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    <record model="ir.actions.act_window" id="gestionalternant_alternant_action_window">
+      <field name="name">GestionAlternants Alternants window</field>
+      <field name="res_model">gestion_alternants.alternant</field>
+      <field name="view_mode">kanban,tree,form</field>
+    </record>
+    <record model="ir.actions.act_window" id="gestionalternant_entreprise_action_window">
+      <field name="name">GestionAlternants entreprise window</field>
+      <field name="res_model">gestion_alternants.entreprise</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    <record model="ir.actions.act_window" id="gestionalternant_tuteurent_action_window">
+      <field name="name">GestionAlternants tuteurent window</field>
+      <field name="res_model">gestion_alternants.tuteurent</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    <record model="ir.actions.act_window" id="gestionalternant_tuteuruniv_action_window">
+      <field name="name">GestionAlternants Tuteurs universitaire window</field>
+      <field name="res_model">gestion_alternants.tuteuruniv</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="gestionalternant_rdv_action_window">
+      <field name="name">GestionAlternants rdv window</field>
+      <field name="res_model">gestion_alternants.rdv</field>
+      <field name="view_mode">calendar,tree,form</field>
+    </record>
+
+  </data>
+</odoo>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Top menu item -->
+    <menuitem name="Gestion des alternants"
+        id="gestionalternant_menu_root"
+        sequence="20"/>
+        
+        
+    <menuitem id="gestionalternant_menu_classe" 
+        name="Classes" 
+        action="gestionalternant_classe_action_window"
+        parent="gestionalternant_menu_root"
+        sequence="1"/>
+        
+    <menuitem id="gestionalternant_menu_alternant" 
+        name="Alternants" 
+        action="gestionalternant_alternant_action_window"
+        parent="gestionalternant_menu_root"
+        sequence="2"/>
+ 
+    <menuitem id="gestionalternant_menu_tuteuruniv" 
+        name="Tuteurs univesitaire" 
+        action="gestionalternant_tuteuruniv_action_window"
+        parent="gestionalternant_menu_root"
+        sequence="3"/>
+ 
+    <menuitem id="gestionalternant_menu_entreprise" 
+        name="Entreprises"
+        parent="gestionalternant_menu_root"
+        sequence="4"/>
+
+    <menuitem id="gestionalternant_menu_entreprise_entreprise" 
+        name="Gérer les entreprises" 
+        action="gestionalternant_entreprise_action_window"
+        parent="gestionalternant_menu_entreprise"
+        sequence="40"/>
+        
+    <menuitem id="gestionalternant_menu_entreprise_tuteur" 
+        name="Gérer les tuteurs entreprise" 
+        action="gestionalternant_tuteurent_action_window"
+        parent="gestionalternant_menu_entreprise"
+        sequence="43"/>
+
+    <menuitem id="gestionalternant_menu_rdv" 
+        name="Rencontre"
+        action="gestionalternant_rdv_action_window"
+        parent="gestionalternant_menu_root"
+        sequence="5"/>
+
+ 
+
+</odoo>
