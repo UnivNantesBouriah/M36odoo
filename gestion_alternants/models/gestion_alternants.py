@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from odoo import models, fields, api
+from google.protobuf.unittest_custom_options_pb2 import required_enum_opt
 
 
 
@@ -11,7 +12,7 @@ class classe(models.Model):
     name = fields.Char(string="Classe", required = True)
     alternant_ids = fields.One2many('gestion_alternants.alternant', 'classe_id',string='Alternant')
     description = fields.Text('Intitulé de la classe')
-
+   
 class alternant(models.Model):
     _name = "gestion_alternants.alternant"
     _description = "gestion_alternants.alternant"
@@ -30,6 +31,7 @@ class TuteurUniv(models.Model):
 
     name = fields.Char(string="Nom du tuteur", required = True)
     firstname = fields.Char(string="Prénom du tuteur", required = True)
+    email= fields.Char(string="email", required=True)
     alternant_ids = fields.One2many('gestion_alternants.alternant', 'tuteuruniv_id',string='Alternant')
     description = fields.Text("""Description du tuteur""")
     
@@ -57,6 +59,7 @@ class TuteurEntreprise(models.Model):
 
     name = fields.Char(string="Nom du tuteur", required = True)
     firstname = fields.Char(string="Prénom du tuteur", required = True)
+    email= fields.Char(string="email", required=True)
     alternant_ids = fields.One2many('gestion_alternants.alternant', 'tuteurent_id',string='Alternant')
     entreprise_id = fields.Many2one('gestion_alternants.entreprise', string='Entreprise')
     description = fields.Text("""Description de l'entreprise""")
@@ -70,7 +73,7 @@ class TuteurEntreprise(models.Model):
 class rdv(models.Model):
     _name = "gestion_alternants.rdv"
     _description = "gestion_alternants.rdv"
-#    _rec_name = 'alternant_id'
+    _rec_name = 'alternant_id'
 
     date = fields.Datetime(string="Date", required = True)
     type = fields.Selection([('1','1'),
@@ -95,7 +98,24 @@ class rdv(models.Model):
     def rdv_send_mail(self):
         print("Send email")
         template_id = self.env.ref('gestion_alternants.mail_template_rdv').id
-        self.env['mail.template'].browse(template_id).send_mail(self.id,force_send=True)
+#        self.env['mail.template'].browse(template_id).send_mail(self.id,force_send=False)
+        ctx={
+            'default_model' : "gestion_alternants.rdv",
+            'default_res_id' : self.id,
+            'default_use_template':bool(template_id),
+            'default_template_id': template_id,
+            'default_composition_mode': 'comment',
+            'email_to': self.alternant_id.email,
+            }
+        return {
+        'type' : 'ir.actions.act_window',
+        'view_type' : 'form',
+        'view_mode' : 'form',
+        'res_model' : 'mail.compose.message',
+        'target' : 'new',
+        'context' : ctx,
+        }
+
 
 
 #     value = fields.Integer()

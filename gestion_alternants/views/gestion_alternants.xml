@@ -99,6 +99,7 @@
         <tree>
           <field name="name"/>
           <field name="firstname"/>
+          <field name="email"/>
           <field name="alternant_ids"/>
           <field name="entreprise_id"/>
           <field name="description"/>      
@@ -114,6 +115,7 @@
          <group>
           <field name="name"/>
           <field name="firstname"/>
+          <field name="email"/>
           <field name="alternant_ids"/>
           <field name="entreprise_id"/>
           <field name="description"/>
@@ -129,6 +131,7 @@
         <tree>
           <field name="name"/>
           <field name="firstname"/>
+          <field name="email"/>
           <field name="alternant_ids"/>
           <field name="description"/>      
         </tree>
@@ -142,6 +145,7 @@
          <group>
           <field name="name"/>
           <field name="firstname"/>
+          <field name="email"/>
           <field name="alternant_ids"/>
           <field name="description"/>
          </group>    
@@ -249,11 +253,15 @@
       <field name="res_model">gestion_alternants.classe</field>
       <field name="view_mode">tree,form</field>
     </record>
+    
+    
     <record model="ir.actions.act_window" id="gestionalternant_alternant_action_window">
       <field name="name">GestionAlternants Alternants window</field>
       <field name="res_model">gestion_alternants.alternant</field>
       <field name="view_mode">kanban,tree,form</field>
     </record>
+    
+    
     <record model="ir.actions.act_window" id="gestionalternant_entreprise_action_window">
       <field name="name">GestionAlternants entreprise window</field>
       <field name="res_model">gestion_alternants.entreprise</field>
@@ -275,6 +283,7 @@
       <field name="res_model">gestion_alternants.rdv</field>
       <field name="view_mode">calendar,tree,form</field>
     </record>
+       
 
   </data>
 </odoo>

@@ -1,11 +1,17 @@
 <odoo>
 	<data>
-    <record model="mail.template" id="mail_template_rdv">
+    <record id="mail_template_rdv" model="mail.template">
         <field name="name">RDV: Send by Email</field>
-        <field name="model_id" ref="gestion_alternant.gestion_alternant_rdv"/>
-        <field name="subject">Delivery Order </field>
+        <field name="model_id" ref="gestion_alternants.model_gestion_alternants_rdv"/>
+        <field name="subject">${object.alternant_id.name} Rencontre n° ${object.type or 'n/a'}</field>
+        <field name="email_to">${object.alternant_id.email};${object.tuteurent_ref.email}</field>
+        <field name="email_from">${object.tuteuruniv_ref.email}</field>        
         <field name="body_html" type="html">
-        <p>blabla</p>
+            <p><strong>${object.tuteurent_ref.firstname} ${object.tuteurent_ref.name}</strong></p>
+            <p>Vous suivez ${object.alternant_id.firstname} ${object.alternant_id.name} de ${object.alternant_id.classe_id.name}</p>
+            <p>Je vous propose le ${object.date} pour la rencontre n°${object.type}. Merci de me confirmer votre disponibilité.</p>
+            <p>Cordialement</p>
+            <p><strong>${object.tuteuruniv_ref.firstname} ${object.tuteuruniv_ref.name}</strong></p>
         </field>
     </record>
     </data>
